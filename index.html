@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NOTO — Get Things Done. Google Calendar meets an AI Productivity Coach. Ruang kerja produktivitas pribadi yang tenang dan elegan.">
+  <meta name="theme-color" content="#2563EB">
+  <title>NOTO — Get Things Done | Website Resmi</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" type="image/png" sizes="192x192" href="assets/icons/icon-192.png">
+  <link rel="icon" type="image/svg+xml" href="assets/icons/icon-192.svg">
+  <link rel="apple-touch-icon" href="assets/icons/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="web-root">
+
+    <!-- Header & Navigation -->
+    <header class="marketing-header">
+      <div class="brand-logo" onclick="window.scrollTo({ top: 0, behavior: 'smooth' })" style="cursor: pointer;">
+        <div class="brand-symbol">N</div>
+        <span>NOTO</span>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 8px;">
+        <button class="btn btn-primary btn-sm mobile-cta-btn" onclick="goToApp('auth-login')" style="display: none; padding: 6px 12px; font-size: 0.8rem; font-weight: 700;">
+          Masuk
+        </button>
+        <button class="mobile-menu-btn" id="mobile-menu-btn" onclick="toggleMarketingMenu()" aria-label="Menu Navigasi">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
+        </button>
+      </div>
+
+      <nav class="marketing-nav">
+        <a href="#m-features" onclick="scrollToSection('m-features')">Fitur</a>
+        <a href="#m-workflow" onclick="scrollToSection('m-workflow')">Cara Kerja</a>
+        <a href="#m-values" onclick="scrollToSection('m-values')">Prinsip</a>
+        <a href="#m-pricing" onclick="scrollToSection('m-pricing')">Harga</a>
+        <a href="#m-faq" onclick="scrollToSection('m-faq')">FAQ</a>
+        <button id="btn-install-marketing" class="btn btn-secondary btn-sm" style="display: none;" onclick="PWAInstaller.promptInstall()">📲 Install App</button>
+        <button class="btn btn-ghost btn-sm" id="web-theme-toggle" onclick="WebTheme.toggle()" title="Ganti Tema">🌓</button>
+        <div id="nav-user-actions" style="display: inline-flex; align-items: center; gap: 8px;">
+          <button class="btn btn-secondary btn-sm" onclick="goToApp('auth-login')">Masuk</button>
+          <button class="btn btn-primary btn-sm" onclick="goToApp('auth-register')">Mulai Sekarang</button>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero Section -->
+      <section class="hero-section marketing-container">
+        <div class="hero-badge">
+          <span class="badge badge-sage">Produktivitas 2.0</span>
+          <span>Google Calendar bertemu dengan AI Productivity Coach</span>
+        </div>
+        <h1 class="hero-title">
+          NOTO<br>
+          <span>Get Things Done.</span>
+        </h1>
+        <p class="hero-subtitle">
+          Beri ruang untuk hal yang benar-benar bermakna. Atur agenda harian Anda, jaga fokus tanpa distraksi, dan wujudkan target nyata dengan tenang.
+        </p>
+        <div class="hero-actions">
+          <button class="btn btn-primary btn-lg" onclick="goToApp('auth-register')">Mulai Mengorganisir</button>
+          <button class="btn btn-secondary btn-lg" onclick="goToApp('auth-login')">Masuk ke Akun</button>
+          <button class="btn btn-secondary btn-lg" id="hero-direct-app-btn" style="display: none;" onclick="goToApp('app-today')">Buka Workspace →</button>
+        </div>
+
+        <!-- Live Mockup Preview -->
+        <div class="hero-preview-glass">
+          <div class="glass-mockup-header">
+            <div class="mockup-dots">
+              <span class="dot dot-red"></span>
+              <span class="dot dot-yellow"></span>
+              <span class="dot dot-green"></span>
+            </div>
+            <div class="mockup-url-bar">
+              <span>🔒 noto.app/workspace/today</span>
+            </div>
+            <div class="mockup-actions">
+              <span class="badge badge-sage">Live Preview</span>
+            </div>
+          </div>
+
+          <div class="glass-mockup-body">
+            <!-- Left: Mini Task Stream -->
+            <div class="mockup-column">
+              <div class="mockup-col-header">
+                <span>PRIORITAS HARI INI</span>
+                <span class="badge badge-neutral">3 Tersisa</span>
+              </div>
+              <div class="mockup-task-item featured">
+                <div class="task-check-circle checked">✓</div>
+                <div class="task-info">
+                  <div class="task-name">Deliver Q3 Roadmap Presentation</div>
+                  <div class="task-sub">Work • 45m Focus Block</div>
+                </div>
+                <span class="badge badge-amber">Mendesak</span>
+              </div>
+              <div class="mockup-task-item">
+                <div class="task-check-circle"></div>
+                <div class="task-info">
+                  <div class="task-name">Review Thesis Methodology Draft</div>
+                  <div class="task-sub">Academic • Deadline 17:00</div>
+                </div>
+                <span class="badge badge-sage">30m</span>
+              </div>
+              <div class="mockup-task-item">
+                <div class="task-check-circle"></div>
+                <div class="task-info">
+                  <div class="task-name">Team Sprint Retrospective Notes</div>
+                  <div class="task-sub">Sync with Design Lead</div>
+                </div>
+                <span class="badge badge-neutral">15m</span>
+              </div>
+            </div>
+
+            <!-- Center: Deep Work Active Session -->
+            <div class="mockup-column center-focus">
+              <div class="focus-live-pill">
+                <span class="pulse-dot"></span> FOCUS SESSION ACTIVE
+              </div>
+              <div class="mockup-timer-ring">
+                <svg viewBox="0 0 100 100" class="mini-timer-svg">
+                  <circle cx="50" cy="50" r="44" class="mini-timer-bg"></circle>
+                  <circle cx="50" cy="50" r="44" class="mini-timer-prog" stroke-dasharray="276" stroke-dashoffset="69"></circle>
+                </svg>
+                <div class="mini-timer-inner">
+                  <div class="mini-timer-digits">18:42</div>
+                  <div class="mini-timer-label">Deliver Q3 Roadmap</div>
+                </div>
+              </div>
+              <div class="mini-timer-controls">
+                <button class="btn btn-secondary btn-sm" onclick="goToApp('app-focus')">Buka Full Focus App →</button>
+              </div>
+            </div>
+
+            <!-- Right: Real-time Analytics & Energy -->
+            <div class="mockup-column">
+              <div class="mockup-col-header">
+                <span>PERFORMA HARIAN</span>
+                <span style="color: var(--accent-forest); font-weight: 700;">83% Peak</span>
+              </div>
+              <div class="mockup-stat-card">
+                <div class="stat-split">
+                  <div>
+                    <div class="stat-mini-label">Fokus Tercatat</div>
+                    <div class="stat-mini-value">2h 15m</div>
+                  </div>
+                  <div class="stat-trend positive">+45m dibanding kemarin</div>
+                </div>
+                <div class="progress-bar-track">
+                  <div class="progress-bar-fill" style="width: 75%;"></div>
+                </div>
+              </div>
+
+              <div class="mockup-ai-card">
+                <div class="ai-card-title">
+                  <span>✨ Saran AI Coach</span>
+                  <span class="badge badge-sage">Aktif</span>
+                </div>
+                <p class="ai-card-text">
+                  “Anda telah menyelesaikan 90 menit kerja mendalam. Ambil jeda 5 menit sebelum melanjutkan sesi berikutnya.”
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Fitur Utama -->
+      <section id="m-features" class="marketing-features marketing-container">
+        <div class="section-header">
+          <h2 class="section-title">Dirancang untuk Hidup yang Tertata</h2>
+          <p class="section-desc">Terinspirasi dari kata <em>"Nata"</em>: menata, mengorganisir, dan menghadirkan ketenangan dalam rutinitas kerja.</p>
+        </div>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon-box">📅</div>
+            <h3>Manajemen Waktu Terpadu</h3>
+            <p>Kelola tugas harian, estimasi durasi fokus, dan prioritaskan aktivitas penting tanpa merasa terbebani oleh jadwal yang kaku.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-box">⏱️</div>
+            <h3>Deep Work Mode</h3>
+            <p>Bekerja dalam blok waktu terarah dengan penghitung waktu presisi berbasis timestamp, target sesi, dan minim distraksi.</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon-box">💡</div>
+            <h3>Reference Hub (Catatan Kilat)</h3>
+            <p>Simpan ide mendadak, rangkuman rapat, atau materi penting langsung dengan penyimpanan otomatis lokal yang aman.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Cara Kerja -->
+      <section id="m-workflow" class="workflow-section">
+        <div class="marketing-container">
+          <div class="section-header">
+            <h2 class="section-title">Ritme Kerja 3 Langkah NOTO</h2>
+            <p class="section-desc">Pola kerja terarah yang menghilangkan kebiasaan menunda-nunda.</p>
+          </div>
+          <div class="steps-row">
+            <div class="step-item">
+              <div class="step-num">01</div>
+              <h4>Catat & Estimasi</h4>
+              <p>Masukkan tugas dalam hitungan detik dan tentukan perkiraan durasi serta tingkat kepentingannya.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">02</div>
+              <h4>Masuki Mode Fokus</h4>
+              <p>Jalankan timer sesi kerja mendalam dengan antarmuka bersih yang meminimalisir gangguan visual.</p>
+            </div>
+            <div class="step-item">
+              <div class="step-num">03</div>
+              <h4>Evaluasi & AI Guidance</h4>
+              <p>Lihat tren produktivitas Anda dan biarkan AI Coach memberikan rekomendasi langkah berikutnya.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Prinsip Nilai Brand -->
+      <section id="m-values" class="values-section marketing-container">
+        <div class="section-header">
+          <h2 class="section-title">Prinsip Desain NOTO</h2>
+          <p class="section-desc">Landasan yang memandu setiap detail antarmuka dan interaksi.</p>
+        </div>
+        <div class="values-grid">
+          <div class="value-box">
+            <h4>Kejelasan (Clarity)</h4>
+            <p>Ketahui apa yang perlu dikerjakan tanpa kebisingan informasi.</p>
+          </div>
+          <div class="value-box">
+            <h4>Kesederhanaan (Simplicity)</h4>
+            <p>Alur kerja singkat tanpa konfigurasi rumit yang membingungkan.</p>
+          </div>
+          <div class="value-box">
+            <h4>Produktivitas (Productivity)</h4>
+            <p>Ubah niat dan rencana menjadi hasil kerja nyata yang terukur.</p>
+          </div>
+          <div class="value-box">
+            <h4>Kedaulatan Data (Reliability)</h4>
+            <p>Semua data dan catatan Anda tersimpan aman secara lokal di perangkat Anda.</p>
+          </div>
+          <div class="value-box">
+            <h4>Fokus Utama (Focus First)</h4>
+            <p>Konsentrasi penuh jauh lebih berharga daripada notifikasi yang berulang.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Harga Berlangganan -->
+      <section id="m-pricing" class="pricing-section">
+        <div class="marketing-container">
+          <div class="section-header">
+            <h2 class="section-title">Pilihan Paket Langganan Terjangkau</h2>
+            <p class="section-desc">Investasi terbaik untuk mahasiswa, profesional muda, dan freelancer yang ingin mengoptimalkan waktu.</p>
+          </div>
+          <div class="pricing-grid">
+            <div class="pricing-card">
+              <div class="pricing-header">
+                <h3>Bulanan (Monthly)</h3>
+                <p>Fleksibilitas akses bulan ke bulan</p>
+              </div>
+              <div class="price-tag"><span id="price-val-monthly">Rp20.000</span><span> / bulan</span></div>
+              <ul class="pricing-features">
+                <li>✓ Full Task & Focus Engine</li>
+                <li>✓ Jurnal Mood & Energi Harian</li>
+                <li>✓ 15 Kueri AI Coach / bulan</li>
+                <li>✓ Dukungan Offline PWA</li>
+              </ul>
+              <button class="btn btn-secondary" onclick="selectPlan('Monthly Plan', 'Rp20.000')">Pilih Bulanan</button>
+            </div>
+
+            <div class="pricing-card featured">
+              <span class="popular-badge">PILIHAN TERBAIK</span>
+              <div class="pricing-header">
+                <h3>Tahunan (Yearly)</h3>
+                <p>Komitmen penuh untuk 1 tahun penuh lompatan hasil</p>
+              </div>
+              <div class="price-tag"><span id="price-val-yearly">Rp160.000</span><span> / tahun</span></div>
+              <ul class="pricing-features">
+                <li>✓ Semua fitur paket bulanan</li>
+                <li>✓ <strong>Unlimited AI Coach</strong> & Task Breakdown</li>
+                <li>✓ Analisis Deep Work mendalam</li>
+                <li>✓ Google Calendar Sync Preview</li>
+                <li>✓ Hemat lebih dari 33% per tahun</li>
+              </ul>
+              <button class="btn btn-primary" onclick="selectPlan('Yearly Plan', 'Rp160.000')">Mulai Paket Tahunan</button>
+            </div>
+
+            <div class="pricing-card">
+              <div class="pricing-header">
+                <h3>6 Bulan (Semester)</h3>
+                <p>Pas untuk target semester kuliah atau proyek khusus</p>
+              </div>
+              <div class="price-tag"><span id="price-val-6month">Rp100.000</span><span> / 6 bln</span></div>
+              <ul class="pricing-features">
+                <li>✓ Full Task & Focus Engine</li>
+                <li>✓ 60 Kueri AI Coach / bulan</li>
+                <li>✓ Laporan Evaluasi Mingguan</li>
+                <li>✓ Ekspor Data JSON Fleksibel</li>
+              </ul>
+              <button class="btn btn-secondary" onclick="selectPlan('6-Month Plan', 'Rp100.000')">Pilih 6 Bulan</button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ Section -->
+      <section id="m-faq" class="faq-section marketing-container">
+        <div class="section-header">
+          <h2 class="section-title">Pertanyaan yang Sering Diajukan</h2>
+        </div>
+        <div class="faq-list">
+          <div class="faq-item active">
+            <div class="faq-question" onclick="toggleFaq(this)">Apakah aplikasi NOTO dapat digunakan offline? <span>+</span></div>
+            <div class="faq-answer">Ya! NOTO didesain sebagai Progressive Web App (PWA). Anda dapat mengelola tugas, mencatat di Reference Hub, dan menyalakan timer fokus tanpa sambungan internet.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Di mana data pribadi saya disimpan? <span>+</span></div>
+            <div class="faq-answer">Pada versi statis mandiri ini, seluruh tugas, catatan, dan riwayat disimpan aman secara lokal di browser Anda (LocalStorage). Tidak ada data pribadi yang dikirim ke server pihak ketiga tanpa izin.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Metode pembayaran apa saja yang didukung? <span>+</span></div>
+            <div class="faq-answer">NOTO mendukung QRIS Dinamis resmi (GoPay, OVO, Dana, ShopeePay, LinkAja, BCA, Mandiri, BRI, BNI, dan semua m-Banking berlogo QRIS) dengan nominal otomatis terkunci dan verifikasi instan.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question" onclick="toggleFaq(this)">Bagaimana cara menginstal aplikasi ke HP atau Laptop? <span>+</span></div>
+            <div class="faq-answer">Buka halaman aplikasi NOTO di Chrome, Safari, atau Edge, lalu klik tombol "Install App" di menu atas atau browser untuk memasang NOTO seperti aplikasi native.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Marketing Footer -->
+    <footer class="marketing-footer">
+      <div class="marketing-container">
+        <div class="footer-grid">
+          <div class="footer-col">
+            <div class="brand-logo" style="margin-bottom: 12px;">
+              <div class="brand-symbol">N</div>
+              <span>NOTO</span>
+            </div>
+            <p style="font-size: 0.88rem; color: var(--text-muted); max-width: 280px;">Sistem produktivitas modern yang dirancang untuk membantu Anda menyelesaikan tugas dengan tenang dan fokus terarah.</p>
+          </div>
+          <div class="footer-col">
+            <h5>Produk & Aplikasi</h5>
+            <ul>
+              <li><a href="javascript:void(0)" onclick="goToApp('app-today')">Buka Workspace App</a></li>
+              <li><a href="javascript:void(0)" onclick="goToApp('app-focus')">Focus Mode</a></li>
+              <li><a href="javascript:void(0)" onclick="goToApp('app-calendar')">Kalender</a></li>
+              <li><a href="javascript:void(0)" onclick="goToApp('app-notes')">Reference Hub</a></li>
+              <li><a href="#m-pricing" onclick="scrollToSection('m-pricing')">Harga & Paket</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Autentikasi</h5>
+            <ul>
+              <li><a href="javascript:void(0)" onclick="goToApp('auth-login')">Masuk (Sign In)</a></li>
+              <li><a href="javascript:void(0)" onclick="goToApp('auth-register')">Daftar Akun Baru</a></li>
+              <li><a href="javascript:void(0)" onclick="goToApp('auth-onboarding')">Panduan Onboarding</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h5>Operasional & Legal</h5>
+            <ul>
+              <li><a href="javascript:void(0)" onclick="window.location.href='../apps/admin.html'">Portal Staff Admin</a></li>
+              <li><a href="javascript:void(0)">Kebijakan Privasi</a></li>
+              <li><a href="javascript:void(0)">Syarat & Ketentuan</a></li>
+              <li><a href="javascript:void(0)">Kedaulatan Data Lokal</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2026 NOTO. All rights reserved. Get Things Done.</span>
+          <span>Static Vanilla Architecture • Privacy First</span>
+        </div>
+      </div>
+    </footer>
+
+  </div>
+
+  <script src="web.js"></script>
+</body>
+</html>
